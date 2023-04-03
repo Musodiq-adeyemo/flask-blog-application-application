@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+    <title> Post Page</title>
+{% endblock %}
+
+{% block body %} 
+    <div class="bar-container1">
+        <br>
+        <h1 style="display: inline;color: navy;">SIRMUSO BLOGSITE POSTS</h1>
+        {%if current_user.is_authenticated %}
+            <a style="display: inline;float:right;margin-right: 80px;" class="btn btn-success" href="{{url_for('main.new_posts')}}">+ New Post </a>
+        {% endif %}
+        <hr>
+    </div>
+    <div class="general-container">
+        <div class="container-body">
+            <div>
+                {% with messages= get_flashed_messages(with_categories=True)%}
+                    {% if messages %}
+                        {% for category,message in messages %}
+                        {% if category == "error" %}
+                        <div class="error">
+                            {{message}}
+                        </div>
+                        {% else %}
+                        <div class="success">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+        
+                <div>
+                {% for posts in post %} 
+                    <div style="width:700px ; margin-left: 150px;" class="post-container">
+                        <div class="title-container">
+                            <img class="post-image" src="/upload/{{posts.poster_id}}" alt="post picture">
+                            <h1 style="font-weight:bold;color: navy;font-size: 25px;text-align: left;">{{posts.author}} </h1>
+                            <h1 class="date" style="font-weight:bold;color: navy;font-size: 22px;text-align:center;">{{posts.date_posted.strftime('%d-%m-%y')}} </h1>
+                            <h1 style="font-weight:bold;color: navy;font-size: 22px;padding-left:50px;"> Id : {{posts.id}} </h1>
+                        </div>
+                        <h2 style="color: green;font-weight:bold;font-size: 30px;"> {{posts.title}}</h2>
+                        <br>
+                        <center>
+                            <p class="lead">
+                              <a href='/{{posts.id}}' style="background-color: navy;"class="btn btn-lg btn-secondary">View Post Content</a>
+                            </p>
+                          </center>
+                        <br>
+                    </div>
+                {% endfor %}    
+        
+                </div>
+            </div>
+        </div>
+        
+        <div class="search-container">
+            <h2>Search Bar</h2>
+            <div class="bar-container">
+                <form action="/search"  method="POST">
+                    <div class="input-box">
+                        <div>
+                            <label for="Post_id">Post Id</label>
+                            <input style="height:30px;width: 180px;" class="form-control mr-sm-2" type="Post_id" placeholder="Post_id" name="post_id">
+                        </div>
+                        <div>
+                            <input style ="margin-top: 30px;height: 32px;width: 70px;padding-left: 0px;margin-left: -30px;" type="submit" value="Get Post" class="btn btn-danger">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="bar-container">
+                <form action="/search" method="POST">
+                    <div class="input-box">
+                        <div>
+                            <label for="user_id">User Id</label>
+                            <input style="height:30px;width: 180px;" class="form-control mr-sm-2" type="user_id" placeholder="user id" name="user_id">
+                        </div>
+                        <div>
+                            <input style ="margin-top: 30px;height: 32px;width: 70px;padding-left: 0px;margin-left: -30px;" type="submit" value="Get Post" class="btn btn-danger">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="bar-container">
+                <form action="/search" method="POST">
+                    <div class="input-box">
+                        <div>
+                            <label for="current_user_id">current_user Id</label>
+                            <input style="height:30px;width: 180px;" class="form-control mr-sm-2" type="current_user_id" placeholder="current_user_id" name="current_user_id">
+                        </div>
+                        <div>
+                            <input style ="margin-top: 30px;height: 32px;width: 70px;padding-left: 0px;margin-left: -30px;" type="submit" value="Get Post" class="btn btn-danger">
+                        </div>
+                    </div>
+                </form>  
+            </div>
+        </div>                          
+    </div>
+
+{% endblock %}

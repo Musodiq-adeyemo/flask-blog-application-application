@@ -1,0 +1,52 @@
+{% extends "base.html" %} 
+
+{% block head %} 
+    <title>login Page</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-body">
+    <div class="input-container">
+
+        {% with messages= get_flashed_messages(with_categories=True)%}
+            {% if messages %}
+                {% for category,message in messages %}
+                {% if category == "error" %}
+                <div class="error">
+                    {{message}}
+                </div>
+                {% else %}
+                <div class="success">
+                    {{message}}
+                </div>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{url_for('auth.login')}}" method="POST">
+            <div class="form-group">
+                <h1 style="color: navy;">Login your account</h1>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Enter your Email">
+            </div>
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your Password">
+            </div>
+                <input type="checkbox" style="float: left;" class="checkbox" name="remember" id="remember"> <h6>Remember Me</h6>
+            <div class="form-group">
+            <div class="form-group">
+                <input type="submit" value="Login" class="mybtn">
+            </div>
+                <h5>
+                    Do not have an account, <a href="{{url_for('auth.register')}}">Create One</a>
+                </h5>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

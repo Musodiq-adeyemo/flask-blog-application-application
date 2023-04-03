@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+    <title> Content Page</title>
+{% endblock %}
+
+{% block body %} 
+    
+
+    <div class="container-body">
+        <div>
+            {% with messages= get_flashed_messages(with_categories=True)%}
+                {% if messages %}
+                    {% for category,message in messages %}
+                    {% if category == "error" %}
+                    <div class="error">
+                        {{message}}
+                    </div>
+                    {% else %}
+                    <div class="success">
+                        {{message}}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        
+            <div>
+                <div style="width: 950px; padding-top:20px" class="bar-container1">
+                    <h2 style="color: green;font-weight:bold;font-size: 40px;"> {{post.title}}</h2>
+                </div>
+                <div style="margin-left:50px ;" class="post-container">
+                    <br>
+                    <p style="white-space: pre-wrap;font-size: 16px;text-align: left;">{{post.content}}</p>
+                    <br>
+                    {%if current_user.is_authenticated %}
+                        <a style="width:150px ;" class="btn btn-primary" href='/posts/edit/{{post.id}}'>Edit</a>
+                        <a style="width:150px ;" class="btn btn-danger" href='/posts/delete/{{post.id}}'>Delete</a>
+                        <br>
+                    {% endif %} 
+                    <br> 
+                    <div  class="title-container">
+                        <img class="post-image" src="/upload/{{post.poster_id}}" alt="post picture">
+                        <h1 style="font-weight:bold;color: navy;font-size: 30px;text-align: left;">{{post.author}} </h1>
+                        <h1 class="date" style="font-weight:bold;color: navy;font-size: 30px;text-align:center;padding-left: 80px;padding-right: 120px;">{{post.date_posted.strftime('%d-%m-%y')}} </h1>
+                        <h1 style="font-weight:bold;color: navy;font-size: 22px;padding-left:20px;"> Id : {{post.id}} </h1>
+                    </div>
+                </div>  
+    
+            </div>
+        </div>
+    </div>
+        
+
+{% endblock %}

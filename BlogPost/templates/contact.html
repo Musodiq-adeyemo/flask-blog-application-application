@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+  <title> Contact Page</title>
+{% endblock %}
+
+{% block body %} 
+<div class="container-body">
+    <div class="input-container">
+        {% with messages= get_flashed_messages(with_categories=True)%}
+            {% if messages %}
+                {% for category,message in messages %}
+                {% if category == "error" %}
+                <div class="error">
+                    {{message}}
+                </div>
+                {% else %}
+                <div class="success">
+                    {{message}}
+                </div>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <h1 style="color: navy;"> CONTACT US</h1>
+        <hr>
+        <p style="color:blue ;">Want to get in touch? Fill out the form below to send me a message and i will get back as soon as possible</p>
+        <hr>
+        <form action="{{url_for('auth.contact')}}" method = 'POST'>
+            <div class="form-group">
+                <div class="register-flex">
+                    <div>
+                        <label for="Username">Username</label>
+                        <input style="width:380px ;" type="text" name="username" id="username" class="form-control" placeholder="Input your Username">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">EMAIL:</label>
+                <input type="email" class="form-control" id="email" name="email"  aria-describedby="Enter Email" placeholder="Enter Your Email">
+            </div>
+            <div class="form-group">
+                <label for="message">MESSAGE</label>
+                <textarea class="form-control" id="message" name="message"  aria-describedby="Write Message"placeholder="Write Your Message" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Send Message" class="mybtn">
+            </div>
+
+        </form>
+    </div>
+</div>
+    
+
+
+
+{% endblock %}

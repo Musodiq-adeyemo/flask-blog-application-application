@@ -1,0 +1,84 @@
+{% extends "base.html" %} 
+
+{% block head %} 
+    <title>Register Page</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-body">
+    <div class="input-container">
+        {% with messages= get_flashed_messages(with_categories=True)%}
+            {% if messages %}
+              {% for category,message in messages %}
+              {% if category == "error" %}
+              <div class="error">
+                {{message}}
+              </div>
+              {% else %}
+              <div class="success">
+                {{message}}
+              </div>
+              {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        <form action="{{url_for('auth.register')}}" method="POST">
+            <div class="form-group">
+                <h1 style="color: navy;">Create an Account</h1>
+            </div>
+            <div class="form-group">
+                <div class="register-flex">
+                    <div>
+                        <label for="firstname">Firstname</label>
+                        <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Input Your Firstname">
+                    </div>
+                    <div>
+                        <label for="Lastname">Lastname</label>
+                        <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Input Your Lastname">
+                    </div>
+                    <div>
+                        <label for="phone">Phone No</label>
+                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Input Your Phone no">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="form-group">
+                <label for="Username">Username</label>
+                <input type="text" name="username" id="username" class="form-control" placeholder="Input your Username">
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="text" name="email" id="email" class="form-control" placeholder="Input your Email">
+            </div>
+            <div class="form-group">
+                <div class="register-flex">
+                    <div>
+                        <label for="Password">Password</label>
+                        <input type="password" name="password1" id="password1" class="form-control" placeholder="Input Your Password">
+                    </div>
+                    <div>
+                        <label for="Confirm Password">Confirm Password</label>
+                        <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm Your Password">
+                    </div>
+                    <div>
+                        <label for="gender">Gender</label>
+                        <input type="text" name="gender" id="gender" class="form-control" placeholder="Your Gender">
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="SignUp" class="mybtn">
+            </div>
+            <div class="form-group">
+                <h5>
+                    Already have an account, <a href="{{url_for('auth.login')}}">Login</a>
+                </h5>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

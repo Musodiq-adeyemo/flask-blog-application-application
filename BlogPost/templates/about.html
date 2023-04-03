@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+  <title> Home Page</title>
+{% endblock %}
+
+{% block body %} 
+<div style="margin-left: 100px;" class="general-containner">
+  <div class="post-container">
+    
+    <main role="main" class="inner cover">
+      <br>
+      <div style="margin-top:-25px ;height:80px" class="title-container">
+        <center>
+          <h1 style="padding-left: 100px; color: navy;" class="cover-heading">SIRMUSO BLOG WEBSITE.</h1>
+        </center>
+      </div>
+      <br>
+      <p class="lead">This blog website contain very intresting articles from different fields ranging from politics,energy,sports and entertainment,religious research,telecommunication,programming,engineering and so on.<br>Looking for where to publish your article and make it go viral? You are in the right place.</p>
+      <br>
+      <center>
+        <p class="lead">
+          <a href="{{url_for('main.home')}}" style="background-color: navy;"class="btn btn-lg btn-secondary">Let's get started</a>
+        </p>
+      </center>
+      
+    </main>
+
+  </div>
+  <br>
+
+  <div class="post-container">
+    <div style="margin-top:5px ;height:80px" class="title-container">
+        <center>
+          <h1 style="padding-left: 250px; color: navy;" class="cover-heading">ABOUT ME</h1>
+        </center>
+      </div>
+    <main role="main" class="inner cover">
+      <br>
+      
+      <div class="register-flex">
+        <div>
+          <img class="dp" src="{{url_for('static',filename='admin.jpeg')}}" alt="">
+        </div>
+          <div>
+            <br>
+            <h3 style="color:green ;font-weight: bold;" >ADEYEMO MUSODIQ OLALEKAN</h3>
+            <br>
+            <h6 style="color:green ;">Backend(Python) School of Engineering Student</h6>
+            <br>
+            <div class="register-flex">
+              
+              <a style="color: blue;"class="nav-link" href="https://twitter.com/sirmuso?s=09">Twitter</a>
+
+              <a style="color: blue;" class="nav-link" href="https://leetcode.com/musawdeeq/">Leetcode</a>
+
+              <a style="color: blue;" class="nav-link" href="https://www.linkedin.com/in/musodiq-adeyemo-078b6a231">Linkedin</a>
+
+             
+              <a style="color: blue;" class="nav-link" href="https://github.com/sirmuso">GitHup</a>
+            </div>
+          </div>
+      </div>
+      
+    </main>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+  <title>Dashboard  Page</title>
+{% endblock %}
+
+{% block body %} 
+    <div class="bar-container1">
+        <h1 style="color: navy;"> Admin Dashboard</h1>
+        <h3 style="color: blue;text-align: center;">{{current_user.username}} Welcome To The Admin Dashboard</h3>
+    </div>
+    <div class="general-container">
+        <div class="container-body">
+            <div>
+                {% with messages= get_flashed_messages(with_categories=True)%}
+                    {% if messages %}
+                        {% for category,message in messages %}
+                        {% if category == "error" %}
+                        <div class="error">
+                            {{message}}
+                        </div>
+                        {% else %}
+                        <div class="success">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+     
+                    <div style="margin-left: 120px;" class="post-container">
+                        <div class="dashflex">
+                            <div>
+                                <h1 style="font-weight:bold;color: gray;font-size: 25px;text-align: left;">USERNAME: <span style="color: green;">{{current_user.username}}</span></h1>
+                                <h1 style="font-weight:bold;color: gray;font-size: 25px;text-align: left;">FIRSTNAME: <span style="color: green;">{{current_user.firstname}}</span></h1>
+                                <h1 style="font-weight:bold;color: gray;font-size: 25px;text-align: left;">LASTNAME: <span style="color: green;">{{current_user.lastname}}</span></h1>
+                                <h1 style="font-weight:bold;color: gray;font-size: 25px;text-align: left;">USER ID: <span style="color: green;">{{current_user.id}}</span></h1>
+                                <h1 style="font-weight:bold;color: gray;font-size: 25px;text-align: left;">EMAIL: <span style="color: green;">{{current_user.email}}</span></h1>
+                                <h1 style="font-weight:bold;color: gray;font-size: 25px;text-align: left;">Phone NO: <span style="color: green;">{{current_user.phone}}</span></h1>
+                                <h1 style="font-weight:bold;color: gray;font-size: 25px;text-align: left;">Member Since: <span style="color: green;">{{current_user.created_at.strftime('%d-%m-%y')}}</span></h1>
+                                <h1 style="font-weight:bold;color: gray;font-size: 25px;text-align: left;">Gender: <span style="color: green;">{{current_user.gender}}</span></h1>
+                                <div>
+                                    <a class="btn btn-success" href='/admin/update/{{current_user.id}}'>update proile</a>
+                                    <a class="btn btn-primary" href="/logout">Logout</a>
+                                    <a class="btn btn-danger" href='/admin/delete/{{current_user.id}}'>Delete</a>
+                                </div>
+                            </div>
+                            <div>
+                                <img class="pp" src="/upload/{{current_user.id}}" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+                    
+        
+            </div>
+        </div>
+    </div>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <div style="height:120px ;width: 850px;margin-left: 120px;" class="bar-container">
+                <div>
+                    <label for="file">File Upload</label>
+                    <input  type="file" name="pic" id="pic" class="form-control" autocomplete="off">
+                    <input type="submit" value="Upload a Picture" class="btn btn-success">
+                    
+                </div>
+                
+            </div>
+        </div>
+    </form>
+    
+{% endblock %}

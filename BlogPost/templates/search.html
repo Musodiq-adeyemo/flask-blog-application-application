@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+    <title> Search Page</title>
+{% endblock %}
+
+{% block body %} 
+    
+<div class="container-body">
+    <div>
+        <h1 style="color: blue;">You are searching for .............</h1>
+        {% with messages= get_flashed_messages(with_categories=True)%}
+            {% if messages %}
+                {% for category,message in messages %}
+                {% if category == "error" %}
+                <div class="error">
+                    {{message}}
+                </div>
+                {% else %}
+                <div class="success">
+                    {{message}}
+                </div>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div>
+        {% for posts in post %} 
+            <div class="post-container">
+                <div  class="title-container">
+                    <img class="post-image" src="/upload/{{posts.poster_id}}" alt="post picture">
+                    <h1 style="font-weight:bold;color: navy;font-size: 30px;text-align: left;">{{posts.author}} </h1>
+                    <h1 class="date" style="font-weight:bold;color: navy;font-size: 30px;text-align:center;padding-left: 80px;padding-right: 120px;">{{posts.date_posted.strftime('%d-%m-%y')}} </h1>
+                    <h1 style="font-weight:bold;color: navy;font-size: 22px;padding-left:20px;"> Id : {{posts.id}} </h1>
+                </div>
+                <h2 style="color: green;font-weight:bold;font-size: 40px;"> {{posts.title}}</h2>
+                <br>
+                <p style="white-space: pre-wrap;font-size: 16px;text-align: left;">{{posts.content}}</p>
+                <br>
+                {%if current_user.is_authenticated %}
+                    <a class="btn btn-danger" href='/posts/delete/{{posts.id}}'>Delete</a>
+                    <a class="btn btn-primary" href='/posts/edit/{{posts.id}}'>Edit</a>
+                    <br>
+                {% endif %} 
+                <br>
+            </div>
+        {% endfor %}    
+
+        </div>
+    </div>
+</div>
+{% endblock %}

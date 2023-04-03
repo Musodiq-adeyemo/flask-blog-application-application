@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+  <title> Edit Page</title>
+{% endblock %}
+
+{% block body %} 
+<div class="container-body">
+  <div class="input-container">
+    <h1 style="color: navy;"> EDITING POST</h1>
+    <hr>
+    <h2 style="color: blue;">Edit:</h2>
+    <hr>
+    <form action='/posts/edit/{{posts.id}}' method ='POST'>
+          <div class="form-group">
+            <label for="title">TITLE:</Title></label>
+            <input type="text" class="form-control" id="title" name="title"  aria-describedby="Enter Title" value="{{posts.title}}">
+  
+          </div>
+          <div class="form-group">
+            <label for="content">POST</label>
+            <textarea rows="9" class="form-control" id="content" name="content"  aria-describedby="Enter Content">{{posts.content}}</textarea>
+          </div>
+      
+          <div class="form-group">
+            <input type="submit" value="POST" class="mybtn">
+          </div>
+
+    </form>
+  </div>
+</div>
+    
+{% endblock %}

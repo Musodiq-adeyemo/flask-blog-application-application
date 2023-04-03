@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+  <title> Home Page</title>
+{% endblock %}
+
+{% block body %} 
+<div class="container-body">
+  <div class="input-container">
+    <h1 style="color: navy;"> NEW POST</h1>
+    <hr>
+    <h2 style="color: blue;">Create New Blog Post :</h2>
+    <hr>
+    <form action="#" method = 'POST'>
+      <div class="form-group">
+          <label for="title">TITLE:</Title></label>
+          <input type="text" class="form-control" id="title" name="title"  aria-describedby="Enter Title" placeholder="Enter Title">
+
+        </div>
+        <div class="form-group">
+          <label for="author">AUTHOR:</label>
+          <input type="text" class="form-control" id="author" name="author"  aria-describedby="Enter Author" placeholder="Enter Author">
+        </div>
+        <div class="form-group">
+          <label for="content">POST</label>
+          <textarea class="form-control" id="content" name="content"  aria-describedby="Enter Content"placeholder="Content" rows="8"></textarea>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="POST" class="mybtn">
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+    
+
+
+
+{% endblock %}
